@@ -32,7 +32,8 @@ convert_jpegs_to_gifs() {
 
 make_final_gif() {
     find . -type f -name "*.gif" |
-    xargs gifsicle -m -o $out.gif --colors 256 --optimize=3 --delay=1
+    xargs gifsicle -m -o $out --colors 256 --optimize=3 --delay=1 \
+        --loopcount=forever
 }
 
 main() {
