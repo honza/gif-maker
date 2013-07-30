@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+#
+# Usage:
+#
+# ./gif-maker video.mp4 out.gif
+#
+# Produces a 300x167, animated gif, 10fps, 10ms spaced
+#
+# brew install gifsicle imagemagick
+
+set -e
+
+in=$1
+out=$2
+
+function jpegs() {
+    find . -type f -name "*.jpeg"
+}
+
+make_jpegs() {
+    ffmpeg -i $in -s 300x167 -pix_fmt rgb24 -r 10 -f image2 foo-xxx-%03d.jpeg
+}
+
+convert_jpegs_to_gifs() {
+    jpegs |
+    while read jpeg
+    do
+        gif=`basename -s .jpeg $jpeg`.gif
+        convert $jpeg $gif
+    done
+}
+
+make_final_gif() {
+    find . -type f -name "*.gif" |
+    xargs gifsicle -m -o $out.gif --colors 256 --optimize=3 --delay=1
+}
+
+main() {
+    make_jpegs
+    convert_jpegs_to_gifs
+    make_final_gif
+    find . -type f -name "foo-xxx-*.*" -delete
+}
+
+main
