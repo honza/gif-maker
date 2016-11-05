@@ -8,18 +8,18 @@ Installation
 
 ### OSX
 
-    $ brew install gifsicle imagemagick ffmpeg
+    $ brew install ffmpeg
 
 ### Fedora
 
-    $ dnf install gifsicle ImageMagick ffmpeg
+    $ dnf install ffmpeg
 
 Usage
 -----
 
     $ ./gif-maker video.mp4 out.gif
 
-Produces a 300x167, animated gif, 10fps, 10ms spaced
+Produces a 320x167, animated gif, 10fps, 10ms spaced
 
 How it works
 ------------
