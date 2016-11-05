@@ -6,7 +6,13 @@ Make animated gifs from video clips
 Installation
 ------------
 
+### OSX
+
     $ brew install gifsicle imagemagick ffmpeg
+
+### Fedora
+
+    $ dnf install gifsicle ImageMagick ffmpeg
 
 Usage
 -----
